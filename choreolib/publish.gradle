@@ -39,7 +39,6 @@ ext.addTaskToCopyAllOutputs = { task ->
     copyAllOutputs.inputs.file task.archiveFile
     copyAllOutputs.from task.archiveFile
 }
-cho
 def artifactGroupId = 'choreo'
 def baseArtifactId = 'ChoreoLib'
 def zipBaseName = "_GROUP_choreo_ID_${baseArtifactId}-cpp_CLS"
