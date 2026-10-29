@@ -3,9 +3,7 @@ apply plugin: 'maven-publish'
 ext.licenseFile = files("$rootDir/LICENSE.txt")
 
 def pubVersion = '0.0.0'
-
 def outputsFolder = file("$buildDir/outputs")
-
 def versionFile = file("$outputsFolder/version.txt")
 
 task outputVersions() {
@@ -138,11 +136,12 @@ publishing {
             url = releasesRepoUrl
         }
         maven {
-            name = "frcmaven"
-            url = "https://frcmaven.wpi.edu/artifactory/sleipnirgroup-mvn-release/"
+            name = "GitHubPackages"
+            // Uses the GITHUB_REPOSITORY env variable (e.g. 'SleipnirGroup/Choreo')
+            url = uri("https://maven.pkg.github.com/${System.getenv('GITHUB_REPOSITORY') ?: 'placeholder/repo'}")
             credentials {
-                username = System.getenv("ARTIFACTORY_USERNAME")
-                password = System.getenv("ARTIFACTORY_PASSWORD")
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
