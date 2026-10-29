@@ -1,12 +1,7 @@
 before_install:
-  # Fix the git dubious ownership warning
   - git config --global --add safe.directory /build
-  
-  # Add the toolchain PPA to get newer GCC/G++ versions on Ubuntu 22.04
-  - apt-get update
-  - apt-get install -y software-properties-common
-  - add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - apt-get update
-  
-  # Install the missing g++-14 compiler
-  - apt-get install -y g++-14
+  - su -c "apt-get update"
+  - su -c "apt-get install -y software-properties-common"
+  - su -c "add-apt-repository ppa:ubuntu-toolchain-r/test -y"
+  - su -c "apt-get update"
+  - su -c "apt-get install -y g++-14"
